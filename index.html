@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyPoint</title>
+
+  <meta name="description" content="Enhance your study experience anytime, anywhere." />
+  <meta property="og:title" content="StudyPoint" />
+  <meta property="og:description" content="Enhance your study experience anytime, anywhere." />
+  <meta property="og:image" content="opengraph.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #1d3b8f, #0b1220);
+      color: white;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      height: 80px;
+      background: white;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 70px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      color: #2563eb;
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #374151;
+      font-weight: 500;
+    }
+
+    .login-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      min-height: calc(100vh - 80px);
+      padding: 0 12%;
+    }
+
+    .hero-content {
+      max-width: 700px;
+    }
+
+    .hero-content h1 {
+      font-size: 72px;
+      line-height: 1.05;
+      font-weight: 800;
+      margin-bottom: 30px;
+    }
+
+    .hero-content p {
+      font-size: 24px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 36px;
+    }
+
+    .cta-btn {
+      background: #22c55e;
+      border: none;
+      color: white;
+      padding: 18px 36px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .navbar {
+        padding: 20px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 60px 24px;
+      }
+
+      .hero-content h1 {
+        font-size: 48px;
+      }
+
+      .hero-content p {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="logo">StudyPoint</div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Courses</a>
+      <a href="#">Pricing</a>
+      <a href="#">Resources</a>
+      <a href="#">About Us</a>
+    </nav>
+
+    <button class="login-btn">Login/Sign Up</button>
+  </header>
+
+  <main class="hero">
+    <div class="hero-content">
+      <h1>Enhance Your Study Experience. Anytime, Anywhere.</h1>
+
+      <p>
+        Bring yourself high-quality study experiences at anytime and anywhere.
+      </p>
+
+      <button class="cta-btn">Explore Our Courses</button>
+    </div>
+  </main>
+</body>
+</html>
