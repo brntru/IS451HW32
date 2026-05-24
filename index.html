@@ -36,6 +36,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 70px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .logo {
@@ -53,6 +54,12 @@
       text-decoration: none;
       color: #374151;
       font-weight: 500;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      color: #2563eb;
     }
 
     .login-btn {
@@ -63,17 +70,25 @@
       border-radius: 10px;
       cursor: pointer;
       font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background: #1d4ed8;
     }
 
     .hero {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       min-height: calc(100vh - 80px);
       padding: 0 12%;
+      gap: 60px;
     }
 
     .hero-content {
       max-width: 700px;
+      flex: 1;
     }
 
     .hero-content h1 {
@@ -99,6 +114,120 @@
       font-size: 18px;
       font-weight: 700;
       cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      background: #16a34a;
+      transform: translateY(-2px);
+    }
+
+    .cta-btn:active {
+      transform: translateY(0);
+    }
+
+    .hero-media {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .hero-video {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #111827;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-modal:hover {
+      color: #2563eb;
+    }
+
+    .modal-content h2 {
+      color: #111827;
+      margin-bottom: 15px;
+      margin-top: 10px;
+    }
+
+    .modal-content p {
+      color: #374151;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .modal-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .modal-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .modal-btn.secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    .modal-btn.secondary:hover {
+      background: #d1d5db;
     }
 
     @media (max-width: 900px) {
@@ -111,7 +240,9 @@
       }
 
       .hero {
+        flex-direction: column;
         padding: 60px 24px;
+        text-align: center;
       }
 
       .hero-content h1 {
@@ -120,6 +251,15 @@
 
       .hero-content p {
         font-size: 18px;
+      }
+
+      .hero-media {
+        width: 100%;
+      }
+
+      .hero-image,
+      .hero-video {
+        max-width: 100%;
       }
     }
   </style>
@@ -130,14 +270,14 @@
     <div class="logo">StudyPoint</div>
 
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Courses</a>
-      <a href="#">Pricing</a>
-      <a href="#">Resources</a>
-      <a href="#">About Us</a>
+      <a onclick="handleNavigation('home')">Home</a>
+      <a onclick="handleNavigation('courses')">Courses</a>
+      <a onclick="handleNavigation('pricing')">Pricing</a>
+      <a onclick="handleNavigation('resources')">Resources</a>
+      <a onclick="handleNavigation('about')">About Us</a>
     </nav>
 
-    <button class="login-btn">Login/Sign Up</button>
+    <button class="login-btn" onclick="openLoginModal()">Login/Sign Up</button>
   </header>
 
   <main class="hero">
@@ -145,11 +285,112 @@
       <h1>Enhance Your Study Experience. Anytime, Anywhere.</h1>
 
       <p>
-        Bring yourself high-quality study experiences at anytime and anywhere.
+        Bring yourself high-quality study experiences at anytime with your study experience, and condition, anywhere.
       </p>
 
-      <button class="cta-btn">Explore Our Courses</button>
+      <button class="cta-btn" onclick="openCoursesModal()">Explore Our Courses</button>
+    </div>
+
+    <div class="hero-media">
+      <img src="opengraph.jpg" alt="StudyPoint Hero Image" class="hero-image" onerror="handleImageError(this)">
+      <video class="hero-video" controls>
+        <source src="study-demo.mp4" type="video/mp4">
+        <source src="study-demo.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </main>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeLoginModal()">&times;</span>
+      <h2>Login / Sign Up</h2>
+      <p>Welcome to StudyPoint! Please create an account or log in to access our courses and resources.</p>
+      <div class="button-group">
+        <button class="modal-btn" onclick="handleLogin()">Sign Up</button>
+        <button class="modal-btn secondary" onclick="closeLoginModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Courses Modal -->
+  <div id="coursesModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeCoursesModal()">&times;</span>
+      <h2>Explore Our Courses</h2>
+      <p>Discover our comprehensive collection of study materials and interactive courses designed to enhance your learning experience. From mathematics to languages, we have courses for every student.</p>
+      <div class="button-group">
+        <button class="modal-btn" onclick="handleCourseExplore()">Browse Courses</button>
+        <button class="modal-btn secondary" onclick="closeCoursesModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Navigation handler
+    function handleNavigation(section) {
+      alert(`Navigating to ${section.charAt(0).toUpperCase() + section.slice(1)}`);
+      console.log(`User clicked on ${section}`);
+    }
+
+    // Login Modal Functions
+    function openLoginModal() {
+      document.getElementById('loginModal').classList.add('active');
+      console.log('Login modal opened');
+    }
+
+    function closeLoginModal() {
+      document.getElementById('loginModal').classList.remove('active');
+      console.log('Login modal closed');
+    }
+
+    function handleLogin() {
+      alert('Sign up feature coming soon! Redirecting to sign up page...');
+      console.log('User clicked sign up');
+      closeLoginModal();
+    }
+
+    // Courses Modal Functions
+    function openCoursesModal() {
+      document.getElementById('coursesModal').classList.add('active');
+      console.log('Courses modal opened');
+    }
+
+    function closeCoursesModal() {
+      document.getElementById('coursesModal').classList.remove('active');
+      console.log('Courses modal closed');
+    }
+
+    function handleCourseExplore() {
+      alert('Course explorer coming soon!');
+      console.log('User clicked browse courses');
+      closeCoursesModal();
+    }
+
+    // Image error handler
+    function handleImageError(img) {
+      console.warn('Image failed to load:', img.src);
+      img.style.backgroundColor = '#374151';
+      img.style.padding = '20px';
+      img.alt = 'Image not found';
+    }
+
+    // Close modals when clicking outside
+    window.onclick = function(event) {
+      const loginModal = document.getElementById('loginModal');
+      const coursesModal = document.getElementById('coursesModal');
+      
+      if (event.target == loginModal) {
+        closeLoginModal();
+      }
+      if (event.target == coursesModal) {
+        closeCoursesModal();
+      }
+    }
+
+    // Log page load
+    console.log('StudyPoint loaded successfully');
+  </script>
 </body>
 </html>
